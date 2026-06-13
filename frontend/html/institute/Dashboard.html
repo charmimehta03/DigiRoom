@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Institute Dashboard</title>
+</head>
+<body>
+
+    <h1>Institute Dashboard</h1>
+
+    <div style="display:flex; gap:30px; margin-bottom:30px;">
+
+        <div style="
+            border:1px solid black;
+            padding:30px;
+            width:200px;
+            text-align:center;
+        ">
+
+            <a href="/institute/approved/teachers">
+                <h2>Teachers</h2>
+            </a>
+
+        </div>
+
+        <div style="
+            border:1px solid black;
+            padding:30px;
+            width:200px;
+            text-align:center;
+        ">
+
+            <a href="/institute/approved/students">
+                <h2>Students</h2>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div>
+
+        <a href="#total-teachers">
+            Total Teachers
+        </a>
+
+        |
+
+        <a href="#approved-teachers">
+            Approved Teachers
+        </a>
+
+        |
+
+        <a href="#pending-teachers">
+            Pending Teachers
+        </a>
+
+        |
+
+        <a href="#total-students">
+            Total Students
+        </a>
+
+        |
+
+        <a href="#approved-students">
+            Approved Students
+        </a>
+
+        |
+
+        <a href="#pending-students">
+            Pending Students
+        </a>
+
+        |
+
+        <a href="#departments">
+            Departments
+        </a>
+
+        |
+
+        <a href="#subjects">
+            Subjects
+        </a>
+
+    </div>
+
+    <hr>
+
+    <h2 id="total-teachers">
+        Total Teachers
+    </h2>
+
+    <p id="totalTeachers">Loading...</p>
+
+    <hr>
+
+    <h2 id="approved-teachers">
+        Approved Teachers
+    </h2>
+
+    <p id="approvedTeachers">Loading...</p>
+
+    <hr>
+
+    <h2 id="pending-teachers">
+        Pending Teachers
+    </h2>
+
+    <p id="pendingTeachers">Loading...</p>
+
+    <hr>
+
+    <h2 id="total-students">
+        Total Students
+    </h2>
+
+    <p id="totalStudents">Loading...</p>
+
+    <hr>
+
+    <h2 id="approved-students">
+        Approved Students
+    </h2>
+
+    <p id="approvedStudents">Loading...</p>
+
+    <hr>
+
+    <h2 id="pending-students">
+        Pending Students
+    </h2>
+
+    <p id="pendingStudents">Loading...</p>
+
+    <hr>
+
+    <h2 id="departments">
+        Departments
+    </h2>
+
+    <p id="departmentsCount">Loading...</p>
+
+    <hr>
+
+    <h2 id="subjects">
+        Subjects
+    </h2>
+
+    <p id="subjectsCount">Loading...</p>
+
+    <hr>
+
+    <script>
+
+    async function loadDashboard() {
+
+        const response =
+            await fetch("/api/institute/dashboard");
+
+        const data =
+            await response.json();
+
+        document.getElementById(
+            "totalTeachers"
+        ).innerText =
+            data.total_teachers;
+
+        document.getElementById(
+            "approvedTeachers"
+        ).innerText =
+            data.approved_teachers;
+
+        document.getElementById(
+            "pendingTeachers"
+        ).innerText =
+            data.pending_teachers;
+
+        document.getElementById(
+            "totalStudents"
+        ).innerText =
+            data.total_students;
+
+        document.getElementById(
+            "approvedStudents"
+        ).innerText =
+            data.approved_students;
+
+        document.getElementById(
+            "pendingStudents"
+        ).innerText =
+            data.pending_students;
+
+        document.getElementById(
+            "departmentsCount"
+        ).innerText =
+            data.departments;
+
+        document.getElementById(
+            "subjectsCount"
+        ).innerText =
+            data.subjects;
+    }
+
+    loadDashboard();
+
+    </script>
+
+</body>
+</html>

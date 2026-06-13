@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Register</title>
+</head>
+<body>
+
+<h2>Student Registration</h2>
+
+<form action="/student/register" method="post">
+
+    <input type="text" name="full_name" placeholder="Full Name" required><br><br>
+
+    <input type="email" name="email" placeholder="Email" required><br><br>
+
+    <input type="password" name="password" placeholder="Password" required><br><br>
+
+    <input type="text" name="roll_number" placeholder="Roll Number" required><br><br>
+
+    <input type="text" name="course" placeholder="Course" required><br><br>
+
+    <input type="text" name="year" placeholder="Year" required><br><br>
+
+    <input type="text" name="division" placeholder="Division" required><br><br>
+
+    <input type="text" name="institute_code" placeholder="Institute Code" required><br><br>
+
+    <button type="submit">Register</button>
+
+</form>
+
+<button onclick="location.href='/student/login'">Login</button>
+
+</body>
+</html>
