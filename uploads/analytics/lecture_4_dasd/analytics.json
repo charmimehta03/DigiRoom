@@ -1,0 +1,21 @@
+{
+  "lecture_id": 4,
+  "lecture_title": "dasd",
+  "status": "completed",
+  "student_analytics": [
+    {
+      "student_id": 1,
+      "student_name": "Omkar",
+      "attention_percentage": 59,
+      "focus_time_seconds": 54,
+      "away_time_seconds": 34,
+      "face_present": "missing",
+      "samples_count": 18
+    }
+  ],
+  "lecture_analytics": {
+    "students_present": 1,
+    "average_attention": 59
+  },
+  "last_updated": "2026-06-21T13:58:15.742395"
+}

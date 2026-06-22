@@ -1,0 +1,111 @@
+.breadcrumb {
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.crumb {
+    color: #2563eb;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+.crumb.active {
+    color: #1e293b;
+    font-weight: bold;
+    cursor: default;
+}
+
+.crumb::after {
+    content: " / ";
+    color: #94a3b8;
+}
+
+.crumb:last-child::after {
+    content: "";
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.chart-card h3 {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #1e293b;
+}
+
+.chart-card canvas {
+    max-height: 280px;
+}
+
+.lists-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.list-card {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.list-card ul {
+    list-style: none;
+    margin-top: 8px;
+}
+
+.list-card li {
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-header {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 15px 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.student-header h2 {
+    margin-bottom: 6px;
+}
+
+.student-header span {
+    display: inline-block;
+    margin-right: 18px;
+    color: #475569;
+    font-size: 14px;
+}
+
+/* =========================================================
+   NEW SECTION HEADERS (Poll / Chat / Performance / Attendance
+   detail blocks added to the Student and Lecture views).
+   Matches the existing spacing rhythm used elsewhere on the
+   page so new sections don't look bolted-on.
+   ========================================================= */
+.analytics-view h2 {
+    margin: 30px 0 12px;
+    font-size: 19px;
+    color: #1e293b;
+}
+
+.analytics-view h2:first-of-type {
+    margin-top: 25px;
+}

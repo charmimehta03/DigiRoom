@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher Login</title>
+  <link rel="stylesheet" href="/static/css/teacherlogin.css"/>
+</head>
+<body>
+
+  <div class="ambient"></div>
+
+  <main class="page">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+      <div class="brand">
+        <div class="logo-icon">🏫</div>
+        <span class="logo-text">DigiRoom</span>
+      </div>
+
+      <div class="left-content">
+        <h2 class="left-headline">Teach Smarter,<br/>Not Harder.</h2>
+        <p class="left-sub">Access your classes, materials, student reports and more — all in one place.</p>
+        <a class="back-link" href="/">← Back to role select</a>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+      <div class="card">
+
+        <div class="logo-wrap">
+          <div class="logo-icon-sm">🏫</div>
+          <span class="logo-text-sm">DigiRoom</span>
+        </div>
+
+        <h1 class="headline">Teacher Login</h1>
+        <p class="sub">Welcome back! Enter your credentials to continue.</p>
+
+        <form action="/teacher/login" method="post">
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@school.com" required/>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password" placeholder="Enter your password" required/>
+              <button type="button" class="toggle-pw" onclick="togglePassword()">👁️</button>
+            </div>
+            <a class="forgot-link" href="/teacher/forgot-password">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-submit">Login to Dashboard</button>
+
+        </form>
+
+        <hr class="divider"/>
+
+        <div class="register-row">
+          <span>New Teacher?</span>
+          <button class="btn-register" onclick="window.location.href='/teacher/register'">Create an account</button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/static/js/teacherlogin.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Teacher Analytics</title>
+    <link rel="stylesheet" href="/static/css/teacher.css">
+    <link rel="stylesheet" href="/static/css/analytics.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+    <div class="top-navbar">
+        <h2>DigiRoom Analytics</h2>
+        <div class="top-links">
+            <a href="#" onclick="window.location.href='/teacher/dashboard?id=' + teacherId; return false;">Dashboard</a>
+            <a href="/teacher/login">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="breadcrumb" id="breadcrumb">
+            <span class="crumb active" data-view="overview">Overall Class Analytics</span>
+        </div>
+
+        <!-- ============ OVERVIEW VIEW ============ -->
+        <div id="view-overview" class="analytics-view">
+
+            <div class="stats-grid">
+                <div class="stat-card"><h3>Average Attendance</h3><div class="stat-value" id="ov-attendance">0%</div></div>
+                <div class="stat-card"><h3>Average Attention</h3><div class="stat-value" id="ov-attention">0%</div></div>
+                <div class="stat-card"><h3>Total Lectures</h3><div class="stat-value" id="ov-lectures">0</div></div>
+                <div class="stat-card"><h3>Total Students</h3><div class="stat-value" id="ov-students">0</div></div>
+                <div class="stat-card"><h3>Poll Participation</h3><div class="stat-value" id="ov-poll">0%</div></div>
+                <div class="stat-card"><h3>Chat Participation</h3><div class="stat-value" id="ov-chat">0%</div></div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Attendance vs Attention by Lecture</h3>
+                    <canvas id="chartLectureBar"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Engagement Mix</h3>
+                    <canvas id="chartEngagementPie"></canvas>
+                </div>
+            </div>
+
+            <div class="lists-grid">
+                <div class="list-card">
+                    <h3>Most Active Lectures</h3>
+                    <ul id="most-active-list"></ul>
+                </div>
+                <div class="list-card">
+                    <h3>Least Active Lectures</h3>
+                    <ul id="least-active-list"></ul>
+                </div>
+            </div>
+
+            <h2>Lectures</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th><th>Title</th><th>Attendance</th><th>Attention</th><th>Status</th><th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="lecture-rows"></tbody>
+            </table>
+        </div>
+
+        <!-- ============ LECTURE VIEW ============ -->
+        <div id="view-lecture" class="analytics-view" style="display:none;">
+
+            <div class="stats-grid" id="lecture-stats-grid"></div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Student Attention</h3>
+                    <canvas id="chartStudentAttention"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Attendance Breakdown</h3>
+                    <canvas id="chartAttendancePie"></canvas>
+                </div>
+            </div>
+
+            <h2>Students</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th><th>Roll No.</th><th>Time Present</th><th>Attention</th><th>Chat Msgs</th><th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="student-rows"></tbody>
+            </table>
+
+            <h2>Polls in this Lecture</h2>
+            <div class="chart-grid" id="lecture-poll-charts" style="display:none;">
+                <div class="chart-card">
+                    <h3>Poll-wise Accuracy</h3>
+                    <canvas id="chartLecturePollAccuracy"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Class Accuracy Trend</h3>
+                    <canvas id="chartLectureAccuracyTrend"></canvas>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Question</th><th>Correct Answer</th><th>Responses</th>
+                        <th>Correct</th><th>Incorrect</th><th>Skipped</th><th>Accuracy</th>
+                    </tr>
+                </thead>
+                <tbody id="lecture-poll-rows"></tbody>
+            </table>
+        </div>
+
+        <!-- ============ STUDENT VIEW ============ -->
+        <div id="view-student" class="analytics-view" style="display:none;">
+
+            <div class="student-header" id="student-header"></div>
+
+            <div class="stats-grid">
+                <div class="stat-card"><h3>Attendance %</h3><div class="stat-value" id="st-attendance">0%</div></div>
+                <div class="stat-card"><h3>Attended / Total</h3><div class="stat-value" id="st-attended">0/0</div></div>
+                <div class="stat-card"><h3>Time Present</h3><div class="stat-value" id="st-time">0m</div></div>
+                <div class="stat-card"><h3>Average Attention</h3><div class="stat-value" id="st-attention">0%</div></div>
+                <div class="stat-card"><h3>Poll Participation</h3><div class="stat-value" id="st-poll">0%</div></div>
+                <div class="stat-card"><h3>Chat Messages</h3><div class="stat-value" id="st-chat">0</div></div>
+            </div>
+
+            <!-- OVERALL PERFORMANCE -->
+            <h2>Overall Performance</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><h3>Performance Score</h3><div class="stat-value" id="perf-score">0%</div></div>
+                <div class="stat-card"><h3>Class Rank</h3><div class="stat-value" id="perf-rank">-</div></div>
+                <div class="stat-card"><h3>Poll Accuracy</h3><div class="stat-value" id="perf-poll-accuracy">0%</div></div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Attention Trend</h3>
+                    <canvas id="chartAttentionTrend"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Focus vs Away Time</h3>
+                    <canvas id="chartFocusAway"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Attendance Breakdown</h3>
+                    <canvas id="chartStudentAttendancePie"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Attendance per Lecture</h3>
+                    <canvas id="chartStudentAttendanceBar"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Daily Attention</h3>
+                    <canvas id="chartDailyAttention"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Attention Distribution</h3>
+                    <canvas id="chartAttentionDistribution"></canvas>
+                </div>
+            </div>
+
+            <h2>Attendance Detail</h2>
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Lecture</th><th>Attended</th><th>Time Present</th></tr>
+                </thead>
+                <tbody id="attendance-detail-rows"></tbody>
+            </table>
+
+            <!-- POLL ANALYTICS -->
+            <h2>Poll Analytics</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><h3>Poll Score</h3><div class="stat-value" id="poll-score">0</div></div>
+                <div class="stat-card"><h3>Correct Answers</h3><div class="stat-value" id="poll-correct">0</div></div>
+                <div class="stat-card"><h3>Incorrect Answers</h3><div class="stat-value" id="poll-incorrect">0</div></div>
+                <div class="stat-card"><h3>Skipped Polls</h3><div class="stat-value" id="poll-skipped">0</div></div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Correct vs Incorrect</h3>
+                    <canvas id="chartPollCorrectIncorrect"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Poll-wise Accuracy</h3>
+                    <canvas id="chartPollWiseAccuracy"></canvas>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lecture</th><th>Question</th><th>Selected Answer</th>
+                        <th>Correct Answer</th><th>Result</th><th>Submitted At</th>
+                    </tr>
+                </thead>
+                <tbody id="poll-detail-rows"></tbody>
+            </table>
+
+            <!-- CHAT ANALYTICS -->
+            <h2>Chat Analytics</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><h3>Total Messages</h3><div class="stat-value" id="chat-total">0</div></div>
+                <div class="stat-card"><h3>Questions Asked</h3><div class="stat-value" id="chat-questions">0</div></div>
+                <div class="stat-card"><h3>Engagement Score</h3><div class="stat-value" id="chat-engagement">0</div></div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Message Activity by Lecture</h3>
+                    <canvas id="chartMessageActivity"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Participation (Poll vs Chat)</h3>
+                    <canvas id="chartParticipationMix"></canvas>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr><th>Lecture</th><th>Message</th><th>Question?</th><th>Time</th></tr>
+                </thead>
+                <tbody id="chat-message-rows"></tbody>
+            </table>
+
+            <!-- STUDENT COMPARISON -->
+            <h2>Class Comparison</h2>
+            <div class="chart-card" style="margin-bottom:25px;">
+                <h3>Student Performance Comparison</h3>
+                <canvas id="chartClassComparison"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/static/js/teacher_analytics.js"></script>
+</body>
+</html>

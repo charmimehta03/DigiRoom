@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="/static/css/student_dashboard.css">
+
+<body>
+
+<div class="ambient"></div>
+
+<div class="sidebar">
+
+    <div class="sidebar-brand">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">DigiRoom</div>
+    </div>
+
+    <div class="sidebar-nav">
+
+        <a href="#" class="nav-item active">
+            📊 Dashboard
+        </a>
+
+        <a
+            href="/student/scheduled-lectures?id="
+            class="nav-item"
+            onclick="
+            this.href=
+            '/student/scheduled-lectures?id=' +
+            new URLSearchParams(
+                window.location.search
+            ).get('id')
+            "
+        >
+            📅 Scheduled Lectures
+        </a>
+
+        <a
+            href="/student/student_lecture_history?id="
+            class="nav-item"
+            onclick="
+            this.href=
+            '/student/student_lecture_history?id=' +
+            new URLSearchParams(
+                window.location.search
+            ).get('id')
+            "
+        >
+            📜 Lecture History
+        </a>
+
+        <a
+            href="/student/materials?id="
+            class="nav-item"
+            onclick="
+            this.href=
+            '/student/materials?id=' +
+            new URLSearchParams(
+                window.location.search
+            ).get('id')
+            "
+        >
+            📚 Study Materials
+        </a>
+
+    </div>
+
+    <div class="sidebar-footer">
+        <a href="/student/login" class="logout-btn">
+            ← Logout
+        </a>
+    </div>
+
+</div>
+
+<div class="main-content">
+
+    <div class="top-navbar">
+
+        <h2>
+            Welcome Student
+        </h2>
+
+    </div>
+
+   
+
+    <h2>Analytics Summary</h2>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Total Lectures</h3>
+            <div class="stat-value" id="totalLectures">0</div>
+        </div>
+
+        <div class="stat-card">
+            <h3>Attended Lectures</h3>
+            <div class="stat-value" id="attendedLectures">0</div>
+        </div>
+
+        <div class="stat-card">
+            <h3>Attendance %</h3>
+            <div class="stat-value" id="attendancePercent">0%</div>
+        </div>
+
+        <div class="stat-card">
+            <h3>Average Minutes</h3>
+            <div class="stat-value" id="averageMinutes">0</div>
+        </div>
+
+    </div>
+
+    <h2>Attendance Graph</h2>
+
+    <div class="chart-card">
+
+        <canvas
+            id="attendanceChart"
+            height="120"
+        ></canvas>
+
+    </div>
+
+    <h2>Live Lectures</h2>
+
+    <div class="table-card">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="liveLectureTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/student_dashboard.js"></script>
+
+</body>

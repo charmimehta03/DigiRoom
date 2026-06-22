@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Lecture</title>
+
+```
+<link rel="stylesheet" href="/static/css/teacher_live_lecture.css">
+```
+
+</head>
+
+<body>
+
+```
+<div class="ambient"></div>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="lecture-header">
+
+        <h1 id="lecture-title">
+            Loading Lecture...
+        </h1>
+
+        <p>
+            Subject :
+            <span id="subject-name">
+                Loading...
+            </span>
+        </p>
+
+    </div>
+
+    <!-- RECORDING -->
+
+    <div class="recording-card">
+
+        <div id="recordingSection">
+
+            <strong>🔴 Recording</strong>
+
+            <button id="startRecording">
+                ▶ Start Recording
+            </button>
+
+            <button id="stopRecording" disabled>
+                ⏹ Stop Recording
+            </button>
+
+            <button id="addMarker" disabled>
+                🔖 Add Marker
+            </button>
+
+            <span id="recordingTimer">
+                00:00
+            </span>
+
+            <span id="recordingStatus">
+                Not recording
+            </span>
+
+        </div>
+
+        <div id="markerList">
+
+            <strong>Markers:</strong>
+
+            <ul id="markerItems"></ul>
+
+        </div>
+
+    </div>
+
+    <!-- TEACHER VIDEO -->
+
+    <div class="teacher-section">
+
+        <h2>Teacher Camera</h2>
+
+        <video
+            id="teacherVideo"
+            autoplay
+            muted
+            playsinline
+        ></video>
+
+        <div class="controls">
+
+            <button id="toggleCamera">
+                📷 Camera
+            </button>
+
+            <button id="toggleMic">
+                🎤 Mic
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- SCREEN SHARE -->
+
+    <div class="screen-section">
+
+        <h2>Screen Share</h2>
+
+        <video
+            id="screenVideo"
+            autoplay
+            playsinline
+        ></video>
+
+        <br><br>
+
+        <button id="shareScreen">
+            Share Screen
+        </button>
+
+    </div>
+
+    <!-- PRESENTATION -->
+
+    <div class="presentation-section">
+
+        <h2>Presentation</h2>
+
+        <a
+            id="downloadPresentation"
+            target="_blank"
+        >
+            📄 Download Presentation
+        </a>
+
+    </div>
+
+    <!-- STUDENTS + CHAT -->
+
+    <div class="bottom-grid">
+
+        <div class="students-section">
+
+            <h2>
+                Students Online :
+                <span id="studentCount">
+                    0
+                </span>
+            </h2>
+
+            <div id="studentGrid"></div>
+
+        </div>
+
+        <div class="chat-section">
+
+            <h2>Live Chat</h2>
+
+            <div id="chatMessages"></div>
+
+            <div class="chat-row">
+
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Type message..."
+                >
+
+                <button id="sendChat">
+                    Send
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- POLL -->
+
+    <div class="poll-section">
+
+        <h2>Poll Management</h2>
+
+        <input
+            type="text"
+            id="pollQuestion"
+            placeholder="Question"
+        >
+
+        <input
+            type="text"
+            id="optionA"
+            placeholder="Option A"
+        >
+
+        <input
+            type="text"
+            id="optionB"
+            placeholder="Option B"
+        >
+
+        <input
+            type="text"
+            id="optionC"
+            placeholder="Option C (optional)"
+        >
+
+        <input
+            type="text"
+            id="optionD"
+            placeholder="Option D (optional)"
+        >
+
+        <label>
+            Correct Answer
+        </label>
+
+        <select id="correctOption">
+
+            <option value="">
+                None (ungraded poll)
+            </option>
+
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+
+        </select>
+
+        <button id="createPoll">
+            Create Poll
+        </button>
+
+        <div id="pollResults"></div>
+
+    </div>
+
+    <!-- END LECTURE -->
+
+    <div class="end-container">
+
+        <button id="endLecture">
+            End Lecture
+        </button>
+
+    </div>
+
+</div>
+
+<script src="/static/js/socket.io.min.js"></script>
+
+<script src="/static/js/live_lecture.js"></script>
+
+<script src="/static/js/webrtc_teacher.js"></script>
+
+<script src="/static/js/chat.js"></script>
+
+<script src="/static/js/poll.js"></script>
+
+<script src="/static/js/recording.js"></script>
+```
+
+</body>
+
+</html>

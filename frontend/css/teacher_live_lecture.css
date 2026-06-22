@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+/* ═══════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════ */
+:root {
+    --bg:       #07091A;
+    --surface:  #0E1228;
+    --border:   rgba(91,91,214,.16);
+    --indigo:   #5B5BD6;
+    --purple:   #8B5CF6;
+    --slate:    #8892B0;
+    --white:    #F0F2FF;
+    --gap:      10px;
+    --r:        14px;
+}
+
+/* ═══════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+/* ═══════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════ */
+html { font-size: 16px; }
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════
+   AMBIENT GLOW
+═══════════════════════════════════════════════ */
+.ambient {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(91,91,214,.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   SHARED CARD
+═══════════════════════════════════════════════ */
+.recording-card,
+.teacher-section,
+.screen-section,
+.presentation-section,
+.students-section,
+.chat-section,
+.poll-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════
+   HEADINGS & LABELS
+═══════════════════════════════════════════════ */
+h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--slate);
+    flex-shrink: 0;
+    margin-bottom: 8px;
+}
+
+label {
+    font-size: 0.7rem;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    flex-shrink: 0;
+    margin-top: 6px;
+    display: block;
+}
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════ */
+button {
+    background: linear-gradient(135deg, var(--indigo), var(--purple));
+    border: none;
+    color: #fff;
+    padding: 9px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: transform .15s, box-shadow .15s;
+}
+button:hover  { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(91,91,214,.35); }
+button:active { transform: translateY(0); }
+button:disabled { opacity: .4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ═══════════════════════════════════════════════
+   FORM INPUTS
+═══════════════════════════════════════════════ */
+input, select {
+    width: 100%;
+    padding: 8px 12px;
+    background: #151A35;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 10px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    outline: none;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+input:focus, select:focus { border-color: var(--indigo); }
+select option { background: #0E1228; }
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(91,91,214,.45); border-radius: 4px; }
+
+/* ═══════════════════════════════════════════════
+   ▌DESKTOP  ≥ 1200px  — no scroll, grid fills 100vh
+═══════════════════════════════════════════════ */
+@media (min-width: 1200px) {
+
+    html, body { height: 100vh; overflow: hidden; }
+
+    .container {
+        position: relative;
+        z-index: 1;
+        height: 100vh;
+        padding: 10px 14px 8px;
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto 220px 1fr auto;
+        grid-template-areas:
+            "hdr  hdr  hdr"
+            "rec  rec  rec"
+            "cam  scr  pres"
+            "stu  cht  pol"
+            "end  end  end";
+    }
+
+    /* video panels fill the fixed 220px row */
+    #teacherVideo { flex: 1; min-height: 0; }
+    #screenVideo  { flex: 1; min-height: 0; }
+
+    /* students / chat / poll fill remaining 1fr */
+    #studentGrid  { flex: 1; min-height: 0; overflow-y: auto; }
+    #chatMessages { flex: 1; min-height: 0; overflow-y: auto; }
+    .poll-section { overflow-y: auto; }
+}
+
+/* ═══════════════════════════════════════════════
+   ▌LAPTOP  900px – 1199px  — 2-col, scrollable
+═══════════════════════════════════════════════ */
+@media (min-width: 900px) and (max-width: 1199px) {
+
+    html, body { overflow: auto; height: auto; }
+
+    .container {
+        position: relative;
+        z-index: 1;
+        padding: 12px;
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "hdr  hdr"
+            "rec  rec"
+            "cam  scr"
+            "pres pres"
+            "stu  cht"
+            "pol  pol"
+            "end  end";
+    }
+
+    .teacher-section, .screen-section    { height: 230px; }
+    .presentation-section                 { height: auto; }
+    .students-section, .chat-section      { height: 280px; }
+    .poll-section                         { height: auto; }
+
+    #teacherVideo, #screenVideo           { flex: 1; min-height: 0; }
+    #studentGrid                          { flex: 1; min-height: 0; overflow-y: auto; }
+    #chatMessages                         { flex: 1; min-height: 0; overflow-y: auto; }
+}
+
+/* ═══════════════════════════════════════════════
+   ▌TABLET  600px – 899px  — 2-col, scrollable
+═══════════════════════════════════════════════ */
+@media (min-width: 600px) and (max-width: 899px) {
+
+    html, body { overflow: auto; height: auto; }
+
+    .container {
+        position: relative;
+        z-index: 1;
+        padding: 10px;
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "hdr  hdr"
+            "rec  rec"
+            "cam  scr"
+            "pres pres"
+            "stu  cht"
+            "pol  pol"
+            "end  end";
+    }
+
+    .teacher-section, .screen-section    { height: 200px; }
+    .students-section, .chat-section      { height: 250px; }
+    .poll-section                         { height: auto; }
+
+    #teacherVideo, #screenVideo           { flex: 1; min-height: 0; }
+    #studentGrid                          { flex: 1; min-height: 0; overflow-y: auto; }
+    #chatMessages                         { flex: 1; min-height: 0; overflow-y: auto; }
+
+    button { font-size: 0.75rem; padding: 8px 10px; }
+    h2     { font-size: 0.68rem; }
+}
+
+/* ═══════════════════════════════════════════════
+   ▌MOBILE  < 600px  — 1-col, scrollable
+═══════════════════════════════════════════════ */
+@media (max-width: 599px) {
+
+    html, body { overflow: auto; height: auto; }
+
+    :root { --r: 12px; --gap: 8px; }
+
+    .container {
+        position: relative;
+        z-index: 1;
+        padding: 8px;
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "hdr"
+            "rec"
+            "cam"
+            "scr"
+            "pres"
+            "stu"
+            "cht"
+            "pol"
+            "end";
+    }
+
+    .teacher-section, .screen-section    { height: 210px; }
+    .students-section, .chat-section      { height: 240px; }
+    .poll-section                         { height: auto; }
+
+    #teacherVideo, #screenVideo           { flex: 1; min-height: 0; }
+    #studentGrid                          { flex: 1; min-height: 0; overflow-y: auto; }
+    #chatMessages                         { flex: 1; min-height: 0; overflow-y: auto; }
+
+    h2     { font-size: 0.68rem; }
+    button { font-size: 0.75rem; padding: 8px 10px; }
+
+    .lecture-header h1 { font-size: 1rem; }
+    .lecture-header p  { font-size: 0.75rem; }
+
+    .controls { flex-wrap: wrap; }
+
+    #recordingSection { flex-wrap: wrap; gap: 6px; }
+}
+
+/* ═══════════════════════════════════════════════
+   GRID AREA ASSIGNMENTS  (all breakpoints)
+═══════════════════════════════════════════════ */
+.lecture-header      { grid-area: hdr; }
+.recording-card      { grid-area: rec; }
+.teacher-section     { grid-area: cam; }
+.screen-section      { grid-area: scr; }
+.presentation-section{ grid-area: pres; }
+.students-section    { grid-area: stu; }
+.chat-section        { grid-area: cht; }
+.poll-section        { grid-area: pol; }
+.end-container       { grid-area: end; }
+
+/* ═══════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════ */
+.lecture-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+.lecture-header h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(.95rem, 2vw, 1.2rem);
+    font-weight: 700;
+}
+.lecture-header p { color: var(--slate); font-size: 0.8rem; }
+.lecture-header p span { color: var(--white); font-weight: 600; }
+
+/* ═══════════════════════════════════════════════
+   RECORDING BAR
+═══════════════════════════════════════════════ */
+.recording-card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+}
+#recordingSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    flex: 1;
+}
+#recordingTimer  { font-size: 0.95rem; font-weight: 700; color: #ff5c5c; }
+#recordingStatus { font-size: 0.78rem; color: var(--slate); }
+#markerList {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    display: none;
+    font-size: 0.78rem;
+}
+#markerItems { margin-top: 6px; padding-left: 16px; }
+
+/* ═══════════════════════════════════════════════
+   TEACHER CAMERA
+═══════════════════════════════════════════════ */
+#teacherVideo {
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+    object-fit: cover;
+    display: block;
+}
+.controls { display: flex; gap: 8px; margin-top: 8px; flex-shrink: 0; }
+.controls button { flex: 1; }
+
+/* ═══════════════════════════════════════════════
+   SCREEN SHARE
+═══════════════════════════════════════════════ */
+#screenVideo {
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+    object-fit: contain;
+    display: block;
+}
+#shareScreen { width: 100%; margin-top: 8px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════
+   PRESENTATION
+═══════════════════════════════════════════════ */
+.presentation-section { justify-content: flex-start; align-items: stretch; }
+.presentation-section a {
+    color: var(--purple);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid rgba(139,92,246,.3);
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-align: center;
+    transition: background .2s;
+    flex-shrink: 0;
+}
+.presentation-section a:hover { background: rgba(139,92,246,.15); }
+
+/* ═══════════════════════════════════════════════
+   STUDENTS
+═══════════════════════════════════════════════ */
+.students-section h2 { white-space: nowrap; }
+
+#studentGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-content: flex-start;
+}
+.student-card {
+    background: rgba(91,91,214,.15);
+    border: 1px solid rgba(91,91,214,.25);
+    border-radius: 10px;
+    overflow: hidden;
+    width: calc(50% - 4px);
+    min-width: 90px;
+}
+.student-card video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    display: block;
+    object-fit: cover;
+}
+.student-card .student-name {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    color: var(--slate);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ═══════════════════════════════════════════════
+   CHAT
+═══════════════════════════════════════════════ */
+#chatMessages {
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(255,255,255,.02);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+.chat-row { display: flex; gap: 8px; margin-top: 8px; flex-shrink: 0; }
+#chatInput {
+    flex: 1;
+    width: auto;
+    margin: 0;
+    padding: 9px 12px;
+    background: #151A35;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 0.8rem;
+    outline: none;
+}
+#chatInput:focus { border-color: var(--indigo); }
+
+/* ═══════════════════════════════════════════════
+   POLL
+═══════════════════════════════════════════════ */
+#createPoll { width: 100%; margin-top: 10px; flex-shrink: 0; }
+#pollResults {
+    margin-top: 8px;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 48px;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   END LECTURE
+═══════════════════════════════════════════════ */
+.end-container { text-align: center; padding: 4px 0 6px; }
+#endLecture {
+    background: linear-gradient(135deg, #dc3545, #ff5c5c);
+    padding: 9px 36px;
+    font-size: 0.82rem;
+}

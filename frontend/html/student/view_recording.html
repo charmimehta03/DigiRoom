@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Recording – DigiRoom</title>
+    <link rel="stylesheet" href="/static/css/view_recording.css">
+</head>
+
+<body>
+
+<div class="ambient"></div>
+
+<div class="page">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="logo-icon">🎓</div>
+            <div class="logo-text">DigiRoom</div>
+        </div>
+
+        <div class="sidebar-nav">
+            <a href="#" id="back-dashboard" class="nav-item">📊 Dashboard</a>
+            <a href="#" id="back-history"   class="nav-item">📜 Lecture History</a>
+            <a href="#" class="nav-item active">🎬 Recording</a>
+        </div>
+
+        <div class="sidebar-footer">
+            <a href="/student/login" class="nav-item logout">⬅ Logout</a>
+        </div>
+
+    </div>
+
+    <!-- Main -->
+    <div class="main-content">
+
+        <!-- Top bar -->
+        <div class="top-navbar">
+            <div class="top-left">
+                <button class="back-btn" id="btn-back">← Back</button>
+                <div>
+                    <h2 id="lecture-title">Loading…</h2>
+                    <p id="lecture-meta" class="meta-text"></p>
+                </div>
+            </div>
+            <!-- Students don't see download recording button here; they download materials -->
+        </div>
+
+        <!-- Content grid -->
+        <div class="viewer-grid">
+
+            <!-- Video column -->
+            <div class="video-column">
+
+                <div class="video-wrap">
+                    <video id="lecture-video" controls preload="metadata">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+
+                <!-- Info strip -->
+                <div class="info-strip">
+                    <div class="info-item">
+                        <span class="info-label">Duration</span>
+                        <span class="info-val" id="info-duration">—</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Recorded</span>
+                        <span class="info-val" id="info-date">—</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Subject</span>
+                        <span class="info-val" id="info-subject">—</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right panel -->
+            <div class="marker-column">
+
+                <div class="marker-card">
+                    <div class="marker-header">
+                        <span class="marker-icon">🔖</span>
+                        <h3>Lecture Markers</h3>
+                    </div>
+                    <div id="marker-list" class="marker-list">
+                        <p class="marker-empty">No markers for this recording.</p>
+                    </div>
+                </div>
+
+                <!-- Lecture materials download -->
+                <div class="marker-card" id="materials-card" style="display:none;">
+                    <div class="marker-header">
+                        <span class="marker-icon">📁</span>
+                        <h3>Download Materials</h3>
+                    </div>
+                    <div id="materials-list" class="marker-list"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/js/view_recording_student.js"></script>
+
+</body>
+</html>

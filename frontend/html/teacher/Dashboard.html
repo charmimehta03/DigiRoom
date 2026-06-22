@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="/static/css/teacher.css">
+</head>
+
+<body>
+
+    <div class="top-navbar">
+
+        <h2 id="teacher-name">
+            DigiRoom Teacher
+        </h2>
+
+        <div class="top-links">
+            <a href="#" id="analytics-link" onclick="window.location.href='/teacher/analytics?id=' + new URLSearchParams(window.location.search).get('id'); return false;">Student Analytics</a>
+            <a href="#">Lecture History</a>
+            <a href="#">Account</a>
+            <a href="/teacher/login">Logout</a>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="action-buttons">
+
+            <button
+                class="action-btn"
+                onclick="
+                    window.location.href=
+                    '/teacher/schedule-lecture?id=' +
+                    new URLSearchParams(
+                        window.location.search
+                    ).get('id')
+                "
+            >
+                Schedule Lecture
+            </button>
+
+            <button class="action-btn">
+                Start Quick Lecture
+            </button>
+
+            <button
+                class="action-btn"
+                onclick="
+                    window.location.href=
+                    '/teacher/lecture-history?id=' +
+                    new URLSearchParams(
+                        window.location.search
+                    ).get('id')
+                "
+            >
+                Lecture History
+            </button>
+
+            <button
+                class="action-btn"
+                onclick="
+                    window.location.href=
+                    '/teacher/materials?id=' +
+                    new URLSearchParams(
+                        window.location.search
+                    ).get('id')
+                "
+            >
+                Materials
+            </button>
+
+        </div>
+
+        <div class="section-nav">
+
+            <a href="#upcoming">Upcoming Lectures</a>
+            <a href="#statistics">Statistics</a>
+            <a href="#subjects">Assigned Subjects</a>
+
+        </div>
+
+        <hr>
+
+        <h2 id="upcoming">
+            Upcoming Lectures
+        </h2>
+
+        <div class="search-bar">
+            <input
+                type="text"
+                placeholder="Search lecture..."
+            >
+        </div>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Title</th>
+                    <th>Subject</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="lecture-table-body">
+
+            </tbody>
+
+        </table>
+
+        <h2 id="statistics">
+            Statistics
+        </h2>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h3>Assigned Subjects</h3>
+                <div
+                    class="stat-value"
+                    id="assigned-subjects"
+                >
+                    0
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Lectures</h3>
+                <div
+                    class="stat-value"
+                    id="total-lectures"
+                >
+                    0
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Lectures This Week</h3>
+                <div
+                    class="stat-value"
+                    id="lectures-week"
+                >
+                    0
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Average Attendance</h3>
+                <div
+                    class="stat-value"
+                    id="attendance"
+                >
+                    0%
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Average Attention</h3>
+                <div
+                    class="stat-value"
+                    id="attention"
+                >
+                    0%
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Students</h3>
+                <div
+                    class="stat-value"
+                    id="students"
+                >
+                    0
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+    <div id="postponeModal">
+
+        <div class="modal-content">
+
+            <h3>
+                Postpone Lecture
+            </h3>
+
+            <input
+                type="date"
+                id="newDate"
+            >
+
+            <br><br>
+
+            <input
+                type="time"
+                id="newTime"
+            >
+
+            <br><br>
+
+            <button onclick="savePostpone()">
+                Save
+            </button>
+
+            <button onclick="closePostponeModal()">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+<script src="/static/js/teacher_dashboard.js"></script>
+</body>
+</html>

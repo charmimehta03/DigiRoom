@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Study Materials</title>
+
+    <link rel="stylesheet" href="/static/css/student_materials.css">
+</head>
+
+<body>
+
+<div class="ambient"></div>
+
+<div class="page">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="logo-icon">🎓</div>
+            <div class="logo-text">DigiRoom</div>
+        </div>
+
+        <div class="sidebar-nav">
+
+            <a href="/student/dashboard" class="nav-item">
+                📊 Dashboard
+            </a>
+
+            <a href="/student/scheduled-lectures" class="nav-item">
+                📅 Lectures
+            </a>
+
+            <a href="/student/student_lecture_history" class="nav-item">
+                📜 History
+            </a>
+
+            <a href="#" class="nav-item active">
+                📚 Materials
+            </a>
+
+            <a href="javascript:history.back()" class="nav-item">
+                ← Back
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <div class="top-navbar">
+            <h2>Study Materials</h2>
+        </div>
+
+        <div class="table-card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Type</th>
+                        <th>Lecture</th>
+                        <th>Subject</th>
+                        <th>File Name</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="materialsTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/js/student_materials.js"></script>
+
+</body>
+</html>

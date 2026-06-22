@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture History – DigiRoom</title>
+
+    <link rel="stylesheet" href="/static/css/student_history.css">
+    <style>
+        /* Recording badge additions */
+        .badge-rec {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(16,185,129,0.12);
+            color: #10B981;
+            border: 1px solid rgba(16,185,129,0.25);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .badge-none {
+            color: #8892B0;
+            font-size: 0.82rem;
+        }
+        .btn-watch-rec {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, #5B5BD6, #8B5CF6);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .btn-watch-rec:hover { opacity: 0.82; }
+        th, td { vertical-align: middle; }
+    </style>
+</head>
+
+<body>
+
+<div class="ambient"></div>
+
+<div class="page">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="logo-icon">🎓</div>
+            <div class="logo-text">DigiRoom</div>
+        </div>
+
+        <div class="sidebar-nav">
+            <a href="#" id="nav-dashboard" class="nav-item">📊 Dashboard</a>
+            <a href="#" id="nav-scheduled" class="nav-item">📅 Scheduled Lectures</a>
+            <a href="#" class="nav-item active">📜 Lecture History</a>
+            <a href="javascript:history.back()" class="nav-item">← Back</a>
+        </div>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <div class="top-navbar">
+            <h2>Lecture History</h2>
+        </div>
+
+        <div class="table-card">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Minutes Attended</th>
+                        <th>Recording</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="historyTable">
+                    <tr><td colspan="7" style="text-align:center;color:#8892B0;padding:2rem">Loading…</td></tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/js/student_history.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Lecture</title>
+
+    <link rel="stylesheet" href="/static/css/edit_lecture.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <a href="/teacher/dashboard">
+            Back to Dashboard
+        </a>
+
+        <h1>
+            Edit Lecture
+        </h1>
+
+        <form id="lecture-form" enctype="multipart/form-data">
+
+            <div>
+
+                <label>
+                    Lecture Title
+                </label>
+
+                <br>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Enter Lecture Title"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+            <div>
+
+                <label>
+                    Subject
+                </label>
+
+                <br>
+
+                <select
+                    id="subject"
+                    name="subject"
+                    required
+                >
+
+                    <option value="">
+                        Select Subject
+                    </option>
+
+                </select>
+
+            </div>
+
+            <br>
+
+            <div>
+
+                <label>
+                    Year
+                </label>
+
+                <br>
+
+                <input
+                    type="text"
+                    id="year"
+                    name="year"
+                    placeholder="Enter Year"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+            <div>
+
+                <label>
+                    Semester
+                </label>
+
+                <br>
+
+                <input
+                    type="text"
+                    id="semester"
+                    name="semester"
+                    placeholder="Enter Semester"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+            <div>
+
+                <label>
+                    Division
+                </label>
+
+                <br>
+
+                <input
+                    type="text"
+                    id="division"
+                    name="division"
+                    placeholder="Enter Division"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+            <div>
+
+                <label>
+                    Lecture Date
+                </label>
+
+                <br>
+
+                <input
+                    type="date"
+                    id="scheduled_date"
+                    name="scheduled_date"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+            <div>
+
+                <label>
+                    Lecture Time
+                </label>
+
+                <br>
+
+                <input
+                    type="time"
+                    id="scheduled_time"
+                    name="scheduled_time"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+            <div>
+
+                <label>
+                    Description
+                </label>
+
+                <br>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="5"
+                    placeholder="Lecture Description"
+                ></textarea>
+
+            </div>
+
+            <br>
+            <div>
+
+                <label>
+                    Presentation (Optional)
+                </label>
+
+                <br>
+
+                <input
+                    type="file"
+                    id="ppt_file"
+                    name="ppt_file"
+                    accept=".ppt,.pptx"
+                >
+
+                <br>
+
+                <small>
+                    Only PPT and PPTX files are allowed
+                </small>
+
+            </div>
+
+            <br>
+
+            <div id="current-ppt">
+
+            </div>
+
+            <br>
+
+            <button type="submit">
+                Update Lecture
+            </button>
+
+        </form>
+
+    </div>
+
+    <script src="/static/js/edit_lecture.js"></script>
+
+</body>
+
+</html>

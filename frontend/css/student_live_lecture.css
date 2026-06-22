@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+/* ═══════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════ */
+:root {
+    --bg:      #07091A;
+    --surface: #0E1228;
+    --border:  rgba(91,91,214,.16);
+    --indigo:  #5B5BD6;
+    --purple:  #8B5CF6;
+    --slate:   #8892B0;
+    --white:   #F0F2FF;
+    --gap:     10px;
+    --r:       14px;
+}
+
+/* ═══════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+/* ═══════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════ */
+html { font-size: 16px; }
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+/* ═══════════════════════════════════════════════
+   AMBIENT GLOW
+═══════════════════════════════════════════════ */
+.ambient {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(91,91,214,.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   SHARED CARD
+═══════════════════════════════════════════════ */
+.teacher-section,
+.screen-share-section,
+.student-section,
+.chat-section,
+.poll-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════
+   SECTION TITLES
+═══════════════════════════════════════════════ */
+.section-title,
+.student-section h2,
+.chat-section h2,
+.poll-section h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--slate);
+    flex-shrink: 0;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.screen-share-section h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--slate);
+    margin-bottom: 6px;
+}
+
+#teacherMicIndicator { color: #22C55E; }
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════ */
+button {
+    background: linear-gradient(135deg, var(--indigo), var(--purple));
+    border: none;
+    color: #fff;
+    padding: 9px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: transform .15s, box-shadow .15s;
+}
+button:hover  { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(91,91,214,.3); }
+button:active { transform: translateY(0); }
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(91,91,214,.45); border-radius: 4px; }
+
+/* ═══════════════════════════════════════════════
+   ▌DESKTOP  ≥ 1200px  — 2-col, no scroll
+   Left: teacher video (tall) + bottom row
+   Right: screen share + poll stacked
+═══════════════════════════════════════════════ */
+@media (min-width: 1200px) {
+
+    html, body { height: 100vh; overflow: hidden; }
+
+    .lecture-container {
+        position: relative;
+        z-index: 1;
+        height: 100vh;
+        padding: 10px 14px 8px;
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: 1fr 320px;
+        grid-template-rows: auto 1fr 160px auto;
+        grid-template-areas:
+            "hdr    hdr"
+            "main   side"
+            "bot    side"
+            "leave  leave";
+    }
+
+    .teacher-section   { grid-area: main; }
+    .bottom-grid       { grid-area: bot; display: grid; grid-template-columns: 190px 1fr; gap: var(--gap); min-height: 0; }
+    .sidebar           { grid-area: side; display: flex; flex-direction: column; gap: var(--gap); min-height: 0; }
+    .leave-container   { grid-area: leave; }
+
+    /* teacher video fills main cell */
+    #teacherVideo      { flex: 1; min-height: 0; }
+
+    /* your camera fills its slot */
+    #studentPreview    { flex: 1; min-height: 0; max-height: none; }
+
+    /* chat fills its slot */
+    #chatMessages      { flex: 1; min-height: 0; overflow-y: auto; }
+
+    /* poll fills remainder of sidebar */
+    .poll-section      { flex: 1; min-height: 0; overflow-y: auto; }
+
+    /* screen share in sidebar */
+    .screen-share-section { flex-shrink: 0; }
+    #screenVideo       { width: 100%; border-radius: 10px; background: #000; display: block; }
+}
+
+/* ═══════════════════════════════════════════════
+   ▌LAPTOP  900px – 1199px  — 2-col, scrollable
+═══════════════════════════════════════════════ */
+@media (min-width: 900px) and (max-width: 1199px) {
+
+    html, body { overflow: auto; height: auto; }
+
+    .lecture-container {
+        position: relative;
+        z-index: 1;
+        padding: 12px;
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "hdr   hdr"
+            "main  side"
+            "bot   bot"
+            "leave leave";
+    }
+
+    .teacher-section          { grid-area: main; height: 300px; }
+    .sidebar                  { grid-area: side; display: flex; flex-direction: column; gap: var(--gap); }
+    .bottom-grid              { grid-area: bot; display: grid; grid-template-columns: 200px 1fr; gap: var(--gap); }
+    .leave-container          { grid-area: leave; }
+
+    .screen-share-section     { flex-shrink: 0; }
+    .poll-section             { flex: 1; min-height: 120px; overflow-y: auto; }
+
+    #teacherVideo             { flex: 1; min-height: 0; }
+    #studentPreview           { height: 120px; }
+    #chatMessages             { height: 150px; overflow-y: auto; }
+    #screenVideo              { width: 100%; border-radius: 10px; background: #000; display: block; }
+}
+
+/* ═══════════════════════════════════════════════
+   ▌TABLET  600px – 899px  — 1-col stacked, scrollable
+═══════════════════════════════════════════════ */
+@media (min-width: 600px) and (max-width: 899px) {
+
+    html, body { overflow: auto; height: auto; }
+
+    .lecture-container {
+        position: relative;
+        z-index: 1;
+        padding: 10px;
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "hdr"
+            "main"
+            "side"
+            "bot"
+            "leave";
+    }
+
+    .teacher-section          { grid-area: main; height: 280px; }
+    .sidebar                  { grid-area: side; display: flex; flex-direction: column; gap: 8px; }
+    .bottom-grid              { grid-area: bot; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .leave-container          { grid-area: leave; }
+
+    .screen-share-section     { flex-shrink: 0; }
+    .poll-section             { min-height: 200px; overflow-y: auto; }
+
+    #teacherVideo             { flex: 1; min-height: 0; }
+    #studentPreview           { height: 140px; }
+    #chatMessages             { height: 140px; overflow-y: auto; }
+    #screenVideo              { width: 100%; border-radius: 10px; background: #000; display: block; }
+
+    h2, .section-title        { font-size: 0.68rem; }
+}
+
+/* ═══════════════════════════════════════════════
+   ▌MOBILE  < 600px  — 1-col, scrollable
+═══════════════════════════════════════════════ */
+@media (max-width: 599px) {
+
+    html, body { overflow: auto; height: auto; }
+
+    :root { --r: 12px; --gap: 8px; }
+
+    .lecture-container {
+        position: relative;
+        z-index: 1;
+        padding: 8px;
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "hdr"
+            "main"
+            "side"
+            "bot"
+            "leave";
+    }
+
+    .teacher-section          { grid-area: main; height: 230px; }
+    .sidebar                  { grid-area: side; display: flex; flex-direction: column; gap: var(--gap); }
+    .bottom-grid              { grid-area: bot; display: grid; grid-template-columns: 1fr; gap: var(--gap); }
+    .leave-container          { grid-area: leave; }
+
+    .screen-share-section     { flex-shrink: 0; }
+    .poll-section             { min-height: 200px; overflow-y: auto; }
+
+    #teacherVideo             { flex: 1; min-height: 0; }
+    #studentPreview           { height: 120px; }
+    #chatMessages             { height: 130px; overflow-y: auto; }
+    #screenVideo              { width: 100%; border-radius: 10px; background: #000; display: block; }
+
+    .lecture-header h1        { font-size: 1rem; }
+    .lecture-header h3        { font-size: 0.75rem; }
+    h2, .section-title        { font-size: 0.68rem; }
+    button                    { font-size: 0.75rem; padding: 8px 10px; }
+    .controls                 { flex-wrap: wrap; }
+}
+
+/* ═══════════════════════════════════════════════
+   HEADER  (all breakpoints)
+═══════════════════════════════════════════════ */
+.lecture-header {
+    grid-area: hdr;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+.lecture-header h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(.95rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+}
+.lecture-header h3 { color: var(--slate); font-size: 0.8rem; font-weight: 500; }
+
+/* ═══════════════════════════════════════════════
+   TEACHER VIDEO  (common)
+═══════════════════════════════════════════════ */
+#teacherVideo {
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+    object-fit: cover;
+    display: block;
+}
+
+/* ═══════════════════════════════════════════════
+   SCREEN SHARE  (common)
+═══════════════════════════════════════════════ */
+.screen-share-section { display: none; } /* JS toggles to block/flex */
+
+/* ═══════════════════════════════════════════════
+   YOUR CAMERA  (common)
+═══════════════════════════════════════════════ */
+#studentPreview {
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+.controls { display: flex; gap: 7px; margin-top: 7px; flex-shrink: 0; }
+.controls button { flex: 1; font-size: 0.72rem; padding: 8px 6px; }
+
+/* ═══════════════════════════════════════════════
+   CHAT  (common)
+═══════════════════════════════════════════════ */
+#chatMessages {
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 10px;
+    padding: 8px 10px;
+    background: rgba(255,255,255,.02);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+.chat-input-row { display: flex; gap: 7px; margin-top: 7px; flex-shrink: 0; }
+#chatInput {
+    flex: 1;
+    padding: 8px 12px;
+    background: #151A35;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 0.8rem;
+    outline: none;
+}
+#chatInput:focus { border-color: var(--indigo); }
+
+/* ═══════════════════════════════════════════════
+   POLL PANEL  (common)
+═══════════════════════════════════════════════ */
+#pollPanel {
+    font-size: 0.82rem;
+    padding: 8px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.02);
+    border: 1px solid rgba(255,255,255,.06);
+    flex: 1;
+}
+
+/* ═══════════════════════════════════════════════
+   LEAVE BUTTON  (common)
+═══════════════════════════════════════════════ */
+.leave-container { text-align: center; padding: 4px 0 6px; }
+#leaveLecture {
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    padding: 9px 32px;
+    font-size: 0.82rem;
+}

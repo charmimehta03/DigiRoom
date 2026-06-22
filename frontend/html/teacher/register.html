@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher Register</title>
+  <link rel="stylesheet" href="/static/css/teacherregister.css"/>
+</head>
+<body>
+
+  <div class="ambient"></div>
+
+  <main class="page">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+      <div class="brand">
+        <div class="logo-icon">🏫</div>
+        <span class="logo-text">DigiRoom</span>
+      </div>
+
+      <div class="left-content">
+        <h2 class="left-headline">Join Your<br/>Institute<br/>Today.</h2>
+        <p class="left-sub">Register as a teacher and get access to classes, students, materials and more.</p>
+        <a class="back-link" href="/">← Back to role select</a>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+      <div class="card">
+
+        <div class="logo-wrap">
+          <div class="logo-icon-sm">🏫</div>
+          <span class="logo-text-sm">DigiRoom</span>
+        </div>
+
+        <h1 class="headline">Teacher Registration</h1>
+        <p class="sub">Fill in your details to create a teacher account.</p>
+
+        <form action="/teacher/register" method="post">
+
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. John Smith" required/>
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@school.com" required/>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password" placeholder="Create a strong password" required/>
+              <button type="button" class="toggle-pw" onclick="togglePassword()">👁️</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="institute_code">Institute Code</label>
+            <input type="text" id="institute_code" name="institute_code" placeholder="Enter your institute code" required/>
+            <span class="field-hint">Get this code from your institute admin</span>
+          </div>
+
+          <button type="submit" class="btn-submit">Create Account</button>
+
+        </form>
+
+        <hr class="divider"/>
+
+        <div class="register-row">
+          <span>Already registered?</span>
+          <button class="btn-register" onclick="location.href='/teacher/login'">Login here</button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/static/js/teacherregister.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Register</title>
+
+```
+<link rel="stylesheet" href="/static/css/student_register.css">
+```
+
+</head>
+
+<body>
+
+```
+<div class="ambient"></div>
+
+<main class="page">
+
+    <!-- LEFT PANEL -->
+
+    <div class="left-panel">
+
+        <div class="brand">
+            <div class="logo-icon">🎓</div>
+            <span class="logo-text">DigiRoom</span>
+        </div>
+
+        <div class="left-content">
+
+            <h2 class="left-headline">
+                Start Your<br>
+                Learning<br>
+                Journey.
+            </h2>
+
+            <p class="left-sub">
+                Create your student account and access lectures,
+                materials, attendance reports and academic progress.
+            </p>
+
+            <a class="back-link" href="/student/login">
+                ← Back to Login
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+
+    <div class="right-panel">
+
+        <div class="card">
+
+            <div class="logo-wrap">
+                <div class="logo-icon-sm">🎓</div>
+                <span class="logo-text-sm">DigiRoom</span>
+            </div>
+
+            <h1 class="headline">
+                Student Registration
+            </h1>
+
+            <p class="sub">
+                Fill in your details to create a student account.
+            </p>
+
+            <form action="/student/register" method="post">
+
+                <div class="field">
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        name="full_name"
+                        placeholder="e.g. Fahim Shaikh"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Email Address</label>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="you@student.com"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+
+                    <div class="password-wrap">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a strong password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-pw"
+                            onclick="togglePassword()"
+                        >
+                            👁️
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label>Roll Number</label>
+                    <input
+                        type="text"
+                        name="roll_number"
+                        placeholder="Enter Roll Number"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Course</label>
+                    <input
+                        type="text"
+                        name="course"
+                        placeholder="Enter Course"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Year</label>
+                    <input
+                        type="text"
+                        name="year"
+                        placeholder="Enter Year"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Division</label>
+                    <input
+                        type="text"
+                        name="division"
+                        placeholder="Enter Division"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Institute Code</label>
+                    <input
+                        type="text"
+                        name="institute_code"
+                        placeholder="Enter Institute Code"
+                        required
+                    >
+
+                    <span class="field-hint">
+                        Get this code from your institute admin
+                    </span>
+                </div>
+
+                <div class="field">
+
+                    <label>Semester</label>
+
+                    <select name="semester">
+
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+
+                    </select>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn-submit"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+            <hr class="divider">
+
+            <div class="register-row">
+
+                <span>Already registered?</span>
+
+                <button
+                    type="button"
+                    class="btn-register"
+                    onclick="location.href='/student/login'"
+                >
+                    Login here
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+    function togglePassword() {
+
+        const password =
+            document.getElementById("password");
+
+        if (password.type === "password") {
+            password.type = "text";
+        } else {
+            password.type = "password";
+        }
+    }
+</script>
+```
+
+</body>
+
+</html>

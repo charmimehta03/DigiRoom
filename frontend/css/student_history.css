@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+    --bg:#07091A;
+    --surface:#0E1228;
+    --border:rgba(91,91,214,.15);
+    --indigo:#5B5BD6;
+    --purple:#8B5CF6;
+    --slate:#8892B0;
+    --white:#F0F2FF;
+    --sidebar-width:260px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+}
+
+.ambient{
+    position:fixed;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    background:radial-gradient(circle,
+    rgba(91,91,214,.08) 0%,
+    transparent 70%);
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+}
+
+.page{
+    display:flex;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:var(--sidebar-width);
+    height:100vh;
+    background:#0E1228;
+    border-right:1px solid var(--border);
+    position:fixed;
+    padding:25px;
+}
+
+.sidebar-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(
+    135deg,
+    var(--indigo),
+    var(--purple)
+    );
+}
+
+.logo-text{
+    font-family:'Sora',sans-serif;
+    font-size:1.5rem;
+    font-weight:800;
+}
+
+.sidebar-nav{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.nav-item{
+    text-decoration:none;
+    color:var(--slate);
+    padding:14px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.nav-item:hover,
+.nav-item.active{
+    background:rgba(91,91,214,.15);
+    color:white;
+}
+
+/* Main Content */
+
+.main-content{
+    margin-left:260px;
+    width:100%;
+    padding:30px;
+}
+
+.top-navbar h2{
+    font-family:'Sora',sans-serif;
+    font-size:2rem;
+    margin-bottom:25px;
+}
+
+/* Table */
+
+.table-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:rgba(91,91,214,.12);
+}
+
+th{
+    padding:18px;
+    text-align:left;
+    font-weight:600;
+}
+
+td{
+    padding:18px;
+    border-top:1px solid rgba(255,255,255,.05);
+}
+
+tr:hover{
+    background:rgba(255,255,255,.02);
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main-content{
+        margin-left:0;
+        padding:15px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+
+}

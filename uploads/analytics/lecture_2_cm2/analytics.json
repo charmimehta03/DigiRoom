@@ -1,0 +1,11 @@
+{
+  "lecture_id": 2,
+  "lecture_title": "cm2",
+  "status": "completed",
+  "student_analytics": [],
+  "lecture_analytics": {
+    "students_present": 1,
+    "average_attention": 0
+  },
+  "last_updated": "2026-06-21T13:46:04.928076"
+}

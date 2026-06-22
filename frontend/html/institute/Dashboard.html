@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Institute Dashboard</title>
+  <link rel="stylesheet" href="/static/css/Dashboard.css"/>
+</head>
+<body>
+
+  <div class="ambient"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-icon">🏫</div>
+      <span class="logo-text">DigiRoom</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="/institute/approved/teachers" class="nav-item">
+        <span class="nav-icon">👨‍🏫</span> Teachers
+      </a>
+      <a href="/institute/approved/students" class="nav-item">
+        <span class="nav-icon">🎓</span> Students
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="/institute/login" class="logout-btn">⬅ Logout</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Institute Dashboard</h1>
+        <p class="page-sub">Welcome back — here's what's happening today.</p>
+      </div>
+    </header>
+
+    <!-- QUICK NAV BUTTONS -->
+    <div class="quick-nav">
+      <button class="qbtn" onclick="goToSection('total-teachers')">Total Teachers</button>
+      <button class="qbtn" onclick="goToSection('approved-teachers')">Approved Teachers</button>
+      <button class="qbtn" onclick="goToSection('pending-teachers')">Pending Teachers</button>
+      <button class="qbtn" onclick="goToSection('total-students')">Total Students</button>
+      <button class="qbtn" onclick="goToSection('approved-students')">Approved Students</button>
+      <button class="qbtn" onclick="goToSection('pending-students')">Pending Students</button>
+      <button class="qbtn" onclick="goToSection('departments')">Departments</button>
+      <button class="qbtn" onclick="goToSection('subjects')">Subjects</button>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- STAT SECTIONS — one below the other -->
+    <div class="stat-sections">
+
+      <div class="stat-section" id="total-teachers">
+        <div class="stat-icon-wrap teachers">👨‍🏫</div>
+        <div class="stat-body">
+          <span class="stat-label">Total Teachers</span>
+          <span class="stat-value" id="totalTeachers">—</span>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <div class="stat-section" id="approved-teachers">
+        <div class="stat-icon-wrap approved">✅</div>
+        <div class="stat-body">
+          <span class="stat-label">Approved Teachers</span>
+          <span class="stat-value" id="approvedTeachers">—</span>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <div class="stat-section" id="pending-teachers">
+        <div class="stat-icon-wrap pending">⏳</div>
+        <div class="stat-body">
+          <span class="stat-label">Pending Teachers</span>
+          <span class="stat-value" id="pendingTeachers">—</span>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <div class="stat-section" id="total-students">
+        <div class="stat-icon-wrap students">🎓</div>
+        <div class="stat-body">
+          <span class="stat-label">Total Students</span>
+          <span class="stat-value" id="totalStudents">—</span>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <div class="stat-section" id="approved-students">
+        <div class="stat-icon-wrap approved">✅</div>
+        <div class="stat-body">
+          <span class="stat-label">Approved Students</span>
+          <span class="stat-value" id="approvedStudents">—</span>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <div class="stat-section" id="pending-students">
+        <div class="stat-icon-wrap pending">⏳</div>
+        <div class="stat-body">
+          <span class="stat-label">Pending Students</span>
+          <span class="stat-value" id="pendingStudents">—</span>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <div class="stat-section" id="departments">
+        <div class="stat-icon-wrap dept">🏛️</div>
+        <div class="stat-body">
+          <span class="stat-label">Departments</span>
+          <span class="stat-value" id="departmentsCount">—</span>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <div class="stat-section" id="subjects">
+        <div class="stat-icon-wrap subj">📚</div>
+        <div class="stat-body">
+          <span class="stat-label">Subjects</span>
+          <span class="stat-value" id="subjectsCount">—</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="/static/js/Dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture History – DigiRoom</title>
+    <link rel="stylesheet" href="/static/css/lecture_history.css">
+    <style>
+        /* Recording badge & button additions */
+        .badge-rec {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(16,185,129,0.12);
+            color: #10B981;
+            border: 1px solid rgba(16,185,129,0.25);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .badge-none {
+            color: #8892B0;
+            font-size: 0.82rem;
+        }
+        .btn-view-rec {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, #5B5BD6, #8B5CF6);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .btn-view-rec:hover { opacity: 0.82; }
+        .btn-view-rec:disabled,
+        .btn-view-rec[disabled] {
+            background: #2a2e4a;
+            color: #8892B0;
+            cursor: not-allowed;
+        }
+        th, td { vertical-align: middle; }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <a href="#" id="back-link">← Back to Dashboard</a>
+
+        <h1>Lecture History</h1>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search lectures…"
+        >
+
+        <br><br>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Title</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                    <th>Recording</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="lecture-history-body">
+                <tr><td colspan="7" style="text-align:center;color:#8892B0;padding:2rem">Loading…</td></tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="/static/js/lecture_history.js"></script>
+
+</body>
+</html>

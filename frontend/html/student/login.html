@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Login</title>
+    <link rel="stylesheet" href="/static/css/student_login.css">
+</head>
+
+<body>
+
+<div class="ambient"></div>
+
+<div class="page">
+
+    <div class="left-panel">
+
+        <div class="brand">
+            <div class="logo-icon">🎓</div>
+            <div class="logo-text">DigiRoom</div>
+        </div>
+
+        <div class="left-content">
+
+            <h1 class="left-headline">
+                Learn Smarter,<br>
+                Grow Faster.
+            </h1>
+
+            <p class="left-sub">
+                Access lectures, materials,
+                attendance reports and
+                academic progress from
+                one unified platform.
+            </p>
+
+            <a href="/" class="back-link">
+                ← Back to role select
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="right-panel">
+
+        <div class="card">
+
+            <div class="logo-wrap">
+                <div class="logo-icon-sm">🎓</div>
+                <div class="logo-text-sm">DigiRoom</div>
+            </div>
+
+            <h2 class="headline">
+                Student Login
+            </h2>
+
+            <p class="sub">
+                Welcome back! Enter your credentials to continue.
+            </p>
+
+            <form action="/student/login" method="post">
+
+                <div class="field">
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="you@student.com"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn-submit"
+                >
+                    Login to Dashboard
+                </button>
+
+            </form>
+
+            <hr class="divider">
+
+            <div class="register-row">
+
+                <span>New Student?</span>
+
+                <button
+                    type="button"
+                    class="btn-register"
+                    onclick="window.location.href='/student/register'"
+                >
+                    Create an account
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
