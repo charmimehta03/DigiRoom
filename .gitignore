@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+digiroom.db
+uploads/recordings/
+uploads/analytics/
+*.log
