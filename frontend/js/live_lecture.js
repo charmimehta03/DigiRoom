@@ -296,7 +296,11 @@ document.getElementById("endLecture")
             screenStream.getTracks().forEach(track => track.stop());
         }
 
-        window.location.href='/teacher/dashboard?id={teacher.id}';
+        const teacherId =
+            params.get("teacher_id");
+
+        window.location.href =
+            `/teacher/dashboard?id=${teacherId}`;;
 
     } catch (error) {
         console.log("End Lecture Error:", error);
