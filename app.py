@@ -1,4 +1,6 @@
+import os
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from backend.python.dashboard_api import router as dashboard_router
 from fastapi import FastAPI
@@ -23,7 +25,27 @@ from backend.python.recording_api import router as recording_router
 # ── Recording viewer (NEW) ────────────────────────────────
 from backend.python.recording_viewer_api import router as recording_viewer_router
 
+# Folders that are git-ignored must exist on a fresh server
+for _d in ("uploads/recordings", "uploads/analytics", "uploads/materials"):
+    os.makedirs(_d, exist_ok=True)
+
 models.Base.metadata.create_all(bind=engine)
+
+# Seed departments / subjects on a fresh (empty) database
+def _seed_if_empty():
+    from backend.database.database import SessionLocal
+    db = SessionLocal()
+    try:
+        empty = db.query(models.Department).first() is None
+    finally:
+        db.close()
+    if empty:
+        try:
+            import backend.database.seed_data  # noqa: F401  (runs on import)
+        except Exception as e:
+            print("Seeding skipped:", e)
+
+_seed_if_empty()
 
 app = FastAPI()
 
@@ -67,4 +89,9 @@ app.mount(
 
 @app.get("/")
 def home():
-    return {"message": "DigiRoom Backend Running"}
+    return RedirectResponse(url="/static/html/common/index.html")
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
