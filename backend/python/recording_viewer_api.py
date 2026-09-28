@@ -19,7 +19,8 @@ Adds to DigiRoom:
 
 import os
 from fastapi import APIRouter, Query
-from fastapi.responses import FileResponse, JSONResponse
+from backend.python.safe_files import FileResponse
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
 from backend.database.database import SessionLocal

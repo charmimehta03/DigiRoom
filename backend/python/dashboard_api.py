@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from fastapi.responses import FileResponse
+from backend.python.safe_files import FileResponse
 import os
 
 from fastapi.responses import HTMLResponse
